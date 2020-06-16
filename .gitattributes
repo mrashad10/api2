@@ -1,0 +1,27 @@
+#Makefile export-ignore
+README.md export-ignore
+.gitattributes export-ignore
+.gitignore export-ignore
+
+# OS generated files #
+######################
+.DS_Store export-ignore
+.DS_Store? export-ignore
+._* export-ignore
+.Spotlight-V100 export-ignore
+.Trashes export-ignore
+ehthumbs.db export-ignore
+Thumbs.db export-ignore
+
+# By MRashad
+#####################
+.gitattributes export-ignore
+.tissue.json export-ignore
+.vscode export-ignore
+*.tasks export-ignore
+*.rest export-ignore
+*.sql export-ignore
+dd_* export-ignore
+*/dd_*.php export-ignore
+*/test_*.php export-ignore
+*/demo_*.php export-ignore

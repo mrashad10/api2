@@ -1,6 +1,6 @@
 # api2
 
-Very simple RESTful API
+A very simple RESTful API framework, helping you create your own API to serving your project.
 
 ## Getting Started
 

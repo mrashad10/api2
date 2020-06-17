@@ -112,7 +112,7 @@
             // Run the validation
             $v->validate();
 
-            // Return the errors if there any
+            // Return the errors if any
             if($v->errors()) {
                 foreach ($v->errors() as $row) {
                     foreach ($row as $err) { $result[] = $err; }
@@ -184,9 +184,14 @@
     // App functions
         // Debug to file
         function debug($message = NULL) {
+            // if the message is object convert to array
             $message = (is_object($message))? (array)$message:$message;
+
+            // if the message is array use "print_r" else print as string
             $message = (is_array($message))? print_r($message, true):$message;
-            file_put_contents('debug.log', $message.PHP_EOL , FILE_APPEND | LOCK_EX);
+
+            // Write the message to the log file
+            file_put_contents('debug.log', date('d M g:i a') . " " . $message.PHP_EOL , FILE_APPEND | LOCK_EX);
         }
 
 

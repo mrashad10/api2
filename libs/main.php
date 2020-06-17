@@ -99,7 +99,6 @@
 
             // Set custom labels
             $labels = [
-                // Trip
                 'name' => 'Name',
                 'helper' => 'Help URL',
                 'totalCoupon' => '',
@@ -221,7 +220,7 @@
 
         // Standard HTTP options verb
         public function OPTIONS(){
-            $list = ['HEAD','GET','POST','PUT','PATCH','OPTIONS','DELETE'];
+            $list = ['HEAD','GET','POST','PUT','PATCH','OPTIONS','DELETE']; // List of standard verbs
             $classMethods = get_class_methods($this);
             foreach ($classMethods as $row) {
                 if(in_array($row, $list)) @$acceptedMethods .= $row.',';
@@ -235,6 +234,7 @@
         protected function output($result = NULL) {
             header('Content-Type: application/json; charset=UTF-8');
             $result = ($result)? $result:$this->result;
+            
             die(json_encode($result));
         }
     }

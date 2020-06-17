@@ -1,5 +1,6 @@
 <?php
 
+// Same settings database as in https://medoo.in/api/new
 $dbSettings = [
 	'database_type' => 'mysql',
 	'server' => 'localhost',
@@ -9,6 +10,7 @@ $dbSettings = [
 	'charset' => 'utf8mb4',
 ];
 
+// Default HTTP headers
 $headers = [
 	'Access-Control-Allow-Origin' => '*',
 	'Access-Control-Allow-Headers' => [
@@ -20,6 +22,8 @@ $headers = [
 	]
 ];
 
+
+// Password salt string
 $salt = '';
 
 // Routing

@@ -3,7 +3,6 @@
 class index extends api {
     public function __construct(){
         parent::__construct();
-        $this->allow();
     }
     
     public function GET(){

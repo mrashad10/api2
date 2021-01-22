@@ -66,7 +66,7 @@ See also the list of [contributors](https://github.com/mrashad10/api2/graphs/con
 
 ## License
 
-This project is licensed under the GPL/3 License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 ## Acknowledgments
 

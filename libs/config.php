@@ -2,29 +2,42 @@
 
 // Same settings database as in https://medoo.in/api/new
 $dbSettings = [
-	'database_type' => 'mysql',
-	'server' => 'localhost',
-	'database_name' => '',
-	'username' => '',
-	'password' => '',
-	'charset' => 'utf8mb4',
+	'database_type' => 'sqlite',
+	'database_file' => 'database.db',
 ];
 
-// Default HTTP headers
-$headers = [
-	'Access-Control-Allow-Origin' => '*',
-	'Access-Control-Allow-Headers' => [
-		'Origin',
-		'X-Requested-With',
-		'Content-Type',
-		'Accept',
-		'Access-Control-Allow-Origin'
-	]
+// General system variables
+	$headers = [
+		'vary' 								=> 'Origin, Accept-Encoding',
+		'access-control-allow-credentials' 	=> 'true',
+		'cache-control' 					=> 'no-cache',
+		'pragma' 							=> 'no-cache',
+		'expires' 							=> "-1",
+		// 'x-content-type-options' 		=>'nosniff',
+		'Access-Control-Allow-Origin'		=> '*',
+		'Access-Control-Allow-Headers' 		=> [
+			'Origin',
+			'X-Requested-With',
+			'Content-Type',
+			'Accept',
+			'Authorization',
+			'Access-Control-Allow-Origin',
+			'Accept-Language'
+		]
+	];
+
+$systemVariables = (object)[
+    'defaultLanguage'      => 'en', // iso-code
+    'smtpServer'           => '',
+    'smtpTlsPort'          => '',
+    'smtpUser'             => '',
+    'smtpPassword'         => '',
+    'emailFromEmail'       => '',
+    'emailFromName'        => 'API2',
+    'tokenLiveTime'        => 1, // In mints
+	'salt'				   => '7tvhbi;ou9u', // Password Salt //FIXME: Must change in production
+	'secretKey'			   => 'ghr56fgp98g-0pei' // JWT key //FIXME: Must change in production
 ];
-
-
-// Password salt string
-$salt = '';
 
 // Routing
     $routes = [

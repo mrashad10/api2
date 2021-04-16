@@ -35,8 +35,8 @@ $systemVariables = (object)[
     'emailFromEmail'       => '',
     'emailFromName'        => 'API2',
     'tokenLiveTime'        => 1, // In mints
-	'salt'				   => '7tvhbi;ou9u', // Password Salt //FIXME: Must change in production
-	'secretKey'			   => 'ghr56fgp98g-0pei' // JWT key //FIXME: Must change in production
+	'salt'				   => sha1('7tvhbi;ou9u'), // Password Salt //FIXME: Must change in production
+	'secretKey'			   => sha1('ghr56fgp98g-0pei') // JWT key //FIXME: Must change in production
 ];
 
 // Routing

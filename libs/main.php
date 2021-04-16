@@ -248,6 +248,27 @@
                 $api->$method();
         }
 
+    // App functions
+        // Debug to file
+        function debug($message = NULL, $die = FALSE) {
+            // Check if it is Medoo object
+            if(is_object($message) && isset($message->pdo)) {
+                $message = [
+                    $message->last().";",
+                    $message->error()
+                ];
+            }
+            // if the message is object convert to array
+            $message = (is_object($message))? (array)$message:$message;
+
+            // if the message is array use "print_r" else print as string
+            $message = (is_array($message))? print_r($message, true):$message;
+
+            // Write the message to the log file
+            file_put_contents('debug.log', date('d M g:i:s a') . " " . $message.PHP_EOL , FILE_APPEND | LOCK_EX);
+            if($die) die();
+        }
+        
 // Main API class
     class API{
         protected $systemVariables, $db, $request, $id, $urlInputs, $input, $data, $validators, $result;

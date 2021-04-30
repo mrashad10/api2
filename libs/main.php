@@ -14,6 +14,13 @@
             $wwwDir = str_replace('index.php', "", $_SERVER['SCRIPT_NAME']);
             $uri    = str_replace($wwwDir, "", $_SERVER['REQUEST_URI']);
             $uri    = explode('/', $uri);
+            if(file_exists('endpoints'.DIRECTORY_SEPARATOR.$uri[0])){
+                $dir = $uri[0];
+                array_shift($uri);
+            }else{
+                $dir = NULL;
+            }
+
             if(isset($uri[1])){
                 $id        = inputCleanUp($uri[1]);
                 $id        = explode('?', $id);
@@ -29,6 +36,7 @@
 
             return (object)[
                 'verb'      => $_SERVER['REQUEST_METHOD'],
+                'dir'       => $dir,
                 'endpoint'  => explode('?', $uri[0])[0],
                 'token'     => jwtDecode(),
                 'id'        => $id,
@@ -59,7 +67,7 @@
             if($exp)
                 $payload['exp'] = time() + (60 * $GLOBALS['systemVariables']->tokenLiveTime);
 
-            return ['token' => Firebase\JWT\JWT::encode(
+            return ['token' => 'Bearer '.Firebase\JWT\JWT::encode(
                 $payload,
                 $GLOBALS['systemVariables']->secretKey
             )];
@@ -217,13 +225,17 @@
                 $endpoint = $request->endpoint;
                 $method   = $request->verb;
 
+                $path = 'endpoints'.DIRECTORY_SEPARATOR;
+                if($request->dir) $path .= $request->dir.DIRECTORY_SEPARATOR;
+                debug($path);
+
                 if(isset($routes[$endpoint])){
-                    $fileName  = 'endpoints'.DIRECTORY_SEPARATOR.$routes[$endpoint][0].'.php';
+                    $fileName  = $path.$routes[$endpoint][0].'.php';
                     $className = isset($routes[$endpoint][1])?
                                      $routes[$endpoint][1]
                                     :$routes[$endpoint][0];
                 }else{
-                    $fileName  = 'endpoints'.DIRECTORY_SEPARATOR.$endpoint.'.php';
+                    $fileName  = $path.$endpoint.'.php';
                     $className = isset($endpoint)?
                                      $endpoint
                                     :NULL;

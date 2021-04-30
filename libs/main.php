@@ -227,7 +227,6 @@
 
                 $path = 'endpoints'.DIRECTORY_SEPARATOR;
                 if($request->dir) $path .= $request->dir.DIRECTORY_SEPARATOR;
-                debug($path);
 
                 if(isset($routes[$endpoint])){
                     $fileName  = $path.$routes[$endpoint][0].'.php';

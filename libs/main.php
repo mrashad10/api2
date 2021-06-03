@@ -33,6 +33,7 @@
                 $id = 0;
                 $urlInputs = NULL;
             }
+            if($_SERVER['REQUEST_METHOD'] == "POST") $id = 0;
 
             return (object)[
                 'verb'      => $_SERVER['REQUEST_METHOD'],
@@ -40,7 +41,7 @@
                 'endpoint'  => explode('?', $uri[0])[0],
                 'token'     => jwtDecode(),
                 'id'        => $id,
-                'urlInputs' => ($urlInputs)?: [],
+                'urlInputs' => ($urlInputs)? :[],
                 'language'  => @(in_array($_SERVER['HTTP_ACCEPT_LANGUAGE'], ['ar', 'en']))? $_SERVER['HTTP_ACCEPT_LANGUAGE']:$GLOBALS['systemVariables']->defaultLanguage
             ];
         }

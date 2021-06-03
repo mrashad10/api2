@@ -11,12 +11,28 @@ class index extends api {
     }
 
     public function POST(){
-        $this->result = 'POST Method';
-        $this->output();
+        $validators = [
+            'email' => ['required', 'email'],
+            'phone' => ['optional']
+        ];
+        
+        if($error = validation($this->input, $validators))
+            $this->output($error, 400);
+
+        $this->result = $this->input;
+        $this->output($this->result, 201);
     }
 
     public function PUT(){
-        $this->result = 'PUT Method';
+        $validators = [
+            'email' => ['required', 'email'],
+            'phone' => ['optional']
+        ];
+        
+        if($error = validation($this->input, $validators))
+            $this->output($error, 400);
+
+        $this->result = $this->input;
         $this->output();
     }
     

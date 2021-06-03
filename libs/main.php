@@ -299,7 +299,7 @@
 
             if(
                    in_array($this->request->verb, ['PUT', 'PATCH', 'DELETE'])
-                && !in_array($this->request->endpoint, ['tokens', 'profile'])
+                && !in_array($this->request->endpoint, ['example', 'profile'])
                 && !$this->id
                 ){
                 $this->output('No ID!!!!!', 400);

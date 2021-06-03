@@ -28,7 +28,16 @@ Now your code is ready to playing with, you can start writing the code
 
 ## Running the tests
 
-I didn't write any unit tests, thank you for your help to add some
+Move into tests directory and run this to install the requirements
+```
+npm install
+```
+
+then edit the file 'example.test.js' to set your own URL
+then run the test
+```
+npm run test
+```
 
 ## Deployment
 

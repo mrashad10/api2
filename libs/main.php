@@ -267,9 +267,10 @@
         function debug($message = NULL, $die = FALSE) {
             // Check if it is Medoo object
             if(is_object($message) && isset($message->pdo)) {
+                $error = $message->error();
                 $message = [
-                    $message->last().";",
-                    $message->error()
+                    'sql'   => $message->last().";",
+                    'error' => ($error[0] === "00000")? []:[ 'id' => $error[1], 'message' => $error[2] ]
                 ];
             }
             // if the message is object convert to array
@@ -331,7 +332,7 @@
             header("Content-Language: $lang");
             header("Content-Length: " . strlen($result));
             header("Content-Type: application/json; charset=UTF-8");
-            
+
             http_response_code($code);
             die($result);
         }

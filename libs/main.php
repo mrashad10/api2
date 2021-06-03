@@ -11,8 +11,8 @@
 // Set main variables
     // Set Request variables
         function setRequest(){
-            $wwwDir = str_replace('index.php', "", $_SERVER['SCRIPT_NAME']);
-            $uri    = str_replace($wwwDir, "", $_SERVER['REQUEST_URI']);
+            $wwwDir = 'uri:'.str_replace('index.php', "", $_SERVER['SCRIPT_NAME']);
+            $uri    = str_replace($wwwDir, "", 'uri:'.$_SERVER['REQUEST_URI']);
             $uri    = explode('/', $uri);
             if(file_exists('endpoints'.DIRECTORY_SEPARATOR.$uri[0])){
                 $dir = $uri[0];

@@ -199,7 +199,8 @@
                 $list = explode(',', $list);
             }
             if(is_array($list)){
-                foreach ($list as $row) { @$result .= $row.','; }
+                $result = NULL;
+                foreach ($list as $row) { $result .= $row.','; }
                 return trim($result, ',');
             }else{
                 return NULL;
@@ -216,7 +217,7 @@
     // Load required class
         function run() {
             $request = $GLOBALS['request'];
-            
+
             if(isset($GLOBALS['headers']))
                 foreach ($GLOBALS['headers'] as $key => $value)
                     setHeader($key, $value);
@@ -245,10 +246,10 @@
             // Load file and class
                 if(!file_exists($fileName))
                     API::output(NULL, 404);
-                    
+
                 include($fileName);
 
-                if (class_exists($className)) 
+                if (class_exists($className))
                     $api = new $className;
                 elseif(class_exists('index'))
                     $api = new index;

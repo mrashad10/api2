@@ -52,7 +52,7 @@
         $input = json_decode(file_get_contents("php://input"));
         if(!$input) parse_str($_SERVER['QUERY_STRING'], $input);
         if(!$input) $input = $_REQUEST;
-        
+
         $input = (is_array($input))? (object)$input:$input;
 
 
@@ -115,6 +115,7 @@
                 }
                 $input = $result;
             }else{
+                if(is_integer($input) || is_float($input)) return $input;
                 $input = trim($input);
                 $input = strip_tags($input);
                 $input = filter_var($input, FILTER_SANITIZE_STRING);
